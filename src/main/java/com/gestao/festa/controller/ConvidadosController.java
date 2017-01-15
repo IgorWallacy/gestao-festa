@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.gestao.festa.model.Convidado;
 import com.gestao.festa.repository.Convidados;
+import com.gestao.festa.service.ConvidadoService;
 
 @Controller
 @RequestMapping("/convidados")
@@ -16,6 +17,9 @@ public class ConvidadosController {
 
 	@Autowired
 	private Convidados convidados;
+	
+	@Autowired
+	private ConvidadoService service;
 
 	@GetMapping
 	public ModelAndView listar() {
@@ -30,7 +34,7 @@ public class ConvidadosController {
 	@PostMapping
 	public String salvar(Convidado convidado){
 		
-		this.convidados.save(convidado);
+		this.service.salvar(convidado);
 		
 		return "redirect:/convidados";
 		
